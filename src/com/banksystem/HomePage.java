@@ -44,10 +44,10 @@ public class HomePage extends Frame implements ActionListener {
 		
 	}
 
-	public static void main(String[] args) {
-		HomePage p = new HomePage();
-
-	}
+//	public static void main(String[] args) {
+//		HomePage p = new HomePage();
+//
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

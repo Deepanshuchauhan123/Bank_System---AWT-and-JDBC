@@ -9,7 +9,7 @@ public class Register extends Frame implements ActionListener{
 	Frame f;
 	Label name,pass,add,mob,amount;
 	TextField namet,passt,addt,mobt,amountt;
-	Button create;
+	Button create,back;
 	
 	public Register() {
 		f = new Frame("Welcome to Register Page");
@@ -24,6 +24,7 @@ public class Register extends Frame implements ActionListener{
 		mobt = new TextField();
 		amountt = new TextField();
 		create = new Button("Create");
+		back =new Button("Back");
 		
 		name.setBounds(50,50,120,40);
 		pass.setBounds(50,100,120,40);
@@ -36,6 +37,7 @@ public class Register extends Frame implements ActionListener{
 		mobt.setBounds(200,200,200,40);
 		amountt.setBounds(200,250,200,40);
 		create.setBounds(150,350,200,40);
+		back.setBounds(150,400,200,40);
 		
 		Font font = new Font(Font.SERIF,Font.PLAIN,24);
 		
@@ -50,6 +52,9 @@ public class Register extends Frame implements ActionListener{
 		mobt.setFont(font);
 		amountt.setFont(font);
 		create.setFont(font);
+		back.setFont(font);
+		
+		back.addActionListener(this);
 		
 		f.add(name);
 		f.add(pass);
@@ -62,6 +67,7 @@ public class Register extends Frame implements ActionListener{
 		f.add(mobt);
 		f.add(amountt);
 		f.add(create);
+		f.add(back);
 		
 		f.setSize(500,500);
 		f.setLayout(null);
@@ -72,14 +78,18 @@ public class Register extends Frame implements ActionListener{
 		
 	}
 
-	public static void main(String[] args) {
-		Register r = new Register();
-
-	}
+//	public static void main(String[] args) {
+//		Register r = new Register();
+//
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==back) {
+			StartPage p1 = new StartPage();
+		}
 		
+		f.setVisible(false);
 		
 	}
 
