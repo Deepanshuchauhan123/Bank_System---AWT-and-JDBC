@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;	
 
-public class HomePage extends Frame implements ActionListener {
+public class HomePage extends Frame implements ActionListener 
+{
 
 	Frame f;
 	JButton deposit,withdraw,transfer,show;
@@ -36,6 +37,10 @@ public class HomePage extends Frame implements ActionListener {
 		transfer.setBackground(Color.RED);
 		show.setBackground(Color.MAGENTA);
 		
+		deposit.addActionListener(this);
+		withdraw.addActionListener(this);
+		transfer.addActionListener(this);
+		show.addActionListener(this);
 		
 		f.setLayout(new GridLayout(2,2));
 		
@@ -50,7 +55,22 @@ public class HomePage extends Frame implements ActionListener {
 //	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		
+		if(e.getSource() == deposit) 
+		{
+			
+		}else if(e.getSource() == withdraw) 
+		{
+			
+		}else if(e.getSource() == transfer) 
+		{
+			
+		}else if(e.getSource() == show) 
+		{
+			
+		}
 		
 		
 	}

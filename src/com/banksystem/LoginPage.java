@@ -76,7 +76,7 @@ public class LoginPage extends Frame implements ActionListener
 		
 		frame.setLayout(null);
 		frame.setVisible(true);
-		System.out.print("good");
+		
 		
 	}
 	

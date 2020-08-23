@@ -3,15 +3,30 @@ package com.banksystem;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Register extends Frame implements ActionListener{
+import javax.swing.JOptionPane;
+
+public class Register extends Frame implements ActionListener
+{
 
 	Frame f;
 	Label name,pass,add,mob,amount;
 	TextField namet,passt,addt,mobt,amountt;
 	Button create,back;
+	Connection con;
+	PreparedStatement ps;
+	ResultSet rs;
+	String url,name_value,password_value,add_value,mob_value,amount_value;
 	
-	public Register() {
+	
+	public Register() 
+	{
+		
 		f = new Frame("Welcome to Register Page");
 		name = new Label("Name");
 		pass = new Label("Password");
@@ -55,6 +70,7 @@ public class Register extends Frame implements ActionListener{
 		back.setFont(font);
 		
 		back.addActionListener(this);
+		create.addActionListener(this);
 		
 		f.add(name);
 		f.add(pass);
@@ -69,11 +85,23 @@ public class Register extends Frame implements ActionListener{
 		f.add(create);
 		f.add(back);
 		
+		try 
+		{
+			url = "jdbc:mysql://localhost:3306/bank_system";
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			con = DriverManager.getConnection(url,"root",null);
+			
+		}catch(Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		
 		f.setSize(500,500);
 		f.setLayout(null);
 		f.setVisible(true);
-		
-		
 		
 		
 	}
@@ -84,12 +112,70 @@ public class Register extends Frame implements ActionListener{
 //	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==back) {
+	public void actionPerformed(ActionEvent e) 
+	{
+		
+		name_value = namet.getText();
+		password_value = passt.getText();
+		add_value = addt.getText();
+		mob_value = mobt.getText();
+		amount_value = amountt.getText();
+		
+		if(e.getSource()==back) 
+		{
 			StartPage p1 = new StartPage();
+		}else 
+		{
+			if(!name_value.equals("") && !password_value.equals("")&& !add_value.equals("")&& !mob_value.equals("")&& !amount_value.equals(""))
+			{
+				try 
+				{
+					
+					ps = con.prepareStatement("insert into Employee_Details(name,password,address,mobile,amount)values(?,?,?,?,?)");
+					ps.setString(1, name_value);
+					ps.setString(2, password_value);
+					ps.setString(3, add_value);
+					ps.setString(4, mob_value);
+					ps.setInt(5, Integer.parseInt(amount_value));
+				
+					ps.executeUpdate();
+					ps.close();
+					
+					ps = con.prepareStatement("select Max(acno) from Employee_Details");
+					rs = ps.executeQuery();
+					
+					String ac_no = "";
+					
+					while(rs.next()) 
+					{
+						
+						ac_no = rs.getString(1);
+					}
+					
+					JOptionPane.showMessageDialog(f, "Hello! "+name_value+" Your Account is created Successfully. Your Account No. is "+ac_no);
+				
+					con.close();
+					ps.close();
+					rs.close();
+					
+					f.setVisible(false);
+					
+					LoginPage p1 = new LoginPage();
+					
+				} catch (SQLException e1) 
+				{
+					
+					e1.printStackTrace();
+				}
+				
+			}else 
+			{
+				
+				JOptionPane.showMessageDialog(f,"Empty Field not Accepted!!");
+			}
+			
 		}
 		
-		f.setVisible(false);
 		
 	}
 
