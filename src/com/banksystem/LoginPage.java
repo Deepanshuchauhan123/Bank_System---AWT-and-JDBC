@@ -20,6 +20,7 @@ public class LoginPage extends Frame implements ActionListener
 	TextField acc,pass;
 	Connection con;
 	ResultSet rs;
+	static String account_value,pass_value;
 	
 	LoginPage()
 	{
@@ -84,7 +85,7 @@ public class LoginPage extends Frame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		String account_value,pass_value;
+		
 		
 		if(e.getSource() == back) 
 		{
@@ -147,6 +148,11 @@ public class LoginPage extends Frame implements ActionListener
 		}
 		
 		
+	}
+	
+	public static int get_acno() 
+	{
+		return Integer.parseInt(account_value);
 	}
 
 }

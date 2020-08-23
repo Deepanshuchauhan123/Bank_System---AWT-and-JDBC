@@ -154,7 +154,7 @@ public class Register extends Frame implements ActionListener
 					
 					JOptionPane.showMessageDialog(f, "Hello! "+name_value+" Your Account is created Successfully. Your Account No. is "+ac_no);
 				
-					con.close();
+					
 					ps.close();
 					rs.close();
 					
