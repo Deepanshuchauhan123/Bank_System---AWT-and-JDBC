@@ -85,6 +85,7 @@ public class Deposit extends Frame implements ActionListener
 		if(e.getSource()==back) 
 		{
 			HomePage p1 = new HomePage();
+			f.setVisible(false);
 			
 		}else 
 		{
